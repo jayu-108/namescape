@@ -1,10 +1,12 @@
 const { response } = require('express');
 const express = require('express');
 const router = express.Router();
+const cors = require('cors')
 const client = require('./elasticsearch/client');
 
 
 const app = express();
+app.use(cors())
 app.use(express.json())  
 
 const port = 5000;
@@ -12,7 +14,7 @@ const port = 5000;
 // const query = 'fulwanti';
 
 // const state = 'maharashtra'
-
+let success = false;
 app.listen(port, () => console.log(`Server listening at http://localhost:${port}`));
 
 app.get('/demo',(req, res) => {
@@ -23,9 +25,13 @@ app.post('/search', async (req, res) => {
 
     const {query, state} = req.body;
 
+    if(query !== '' && state !== ''){
+
     const result = await client.search({
         index: 'searchwithcdacmulti',
         body: {
+          from: 0,
+          size: 50,
           query: {
             // match: { name_cdac: 'pralhad' }
                 bool: {
@@ -94,9 +100,24 @@ app.post('/search', async (req, res) => {
         }
       })
 
-      res.json({result:result.hits.hits,total:result.hits.total.value});
-      console.log(result.hits.hits);
-      console.log(result.hits.total.value)
+     
+     const data = await result.hits.hits;
+     const datArray = data.map((element) => {
+     const arr = element._source;
+      return{
+        name: arr.name, 
+        name_in: arr.name_in
+      }
+     })
+     success = true;
+     console.log(datArray,result.hits.total.value)
+     res.json({name:datArray,total:result.hits.total.value,success});
+    //  console.log(data);
+    }
+    else{
+      res.json({message:"Please Enter A Query !",success})
+      console.log("Null Value");
+    }
     }
 )
 
