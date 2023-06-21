@@ -1,7 +1,7 @@
 const { Client } = require('@elastic/elasticsearch');
 
 const client = new Client({
-    node : 'http://localhost:9200'
+    node : 'http://10.208.36.141:9200'
 })
 
 client.ping()

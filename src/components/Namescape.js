@@ -3,7 +3,7 @@ import DataTable from 'react-data-table-component';
 import Select from 'react-select';
 
 function Namescape() {
-
+    var data;
     const [searchquery, setSearchQuery] = useState('');
     const [result, setResult] = useState([]);
     const [selectedOption, setSelectedOption] = useState('');
@@ -28,7 +28,7 @@ function Namescape() {
     const handleClick = async (e) => {
         e.preventDefault();
 
-        const response = await fetch('http://localhost:5000/search', {
+        const response = await fetch('http://10.208.10.158:5000/search', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -39,7 +39,7 @@ function Namescape() {
         const json = await response.json();
         if (json.success) {
             setResult(json.name)
-            console.log(searchquery)
+            // console.log(searchquery)
             console.log(selectedOption.value)
             console.log(json.total)
             console.log(result)
@@ -58,20 +58,19 @@ function Namescape() {
             selector: row => row.name_in,
         },
     ]
+    var isEmpty = false;
+    if (searchquery !== '' && result !== '') {
+        isEmpty = true;
+        data = result.map((element) => {
+            console.log(element.name)
+            return {
+                name: element.name,
+                name_in: element.name_in
+            }
+        })
+    }
 
-    const data = result.map((element) => {
-        console.log(element.name)
-        return {
-            name: element.name,
-            name_in: element.name_in
-        }
-    })
-
-
-
-
-
-    return (
+return (
         <>
             <div className="container " >
                 <div className="row">
@@ -96,11 +95,8 @@ function Namescape() {
                         </div>
                     </div>
                 </form>
-                <DataTable
-                    columns={columns}
-                    data={data}
-                    pagination
-                />
+                {isEmpty ? (<DataTable columns={columns} data={data} pagination
+                />) : (<p>"Please Enter a query"</p>)}
             </div>
         </>
     )

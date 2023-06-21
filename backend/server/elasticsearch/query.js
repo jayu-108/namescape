@@ -1,6 +1,6 @@
 async function getResult() {
     const result = await client.search({
-        index: 'searchwithcdacmulti',
+        index: 'searchwithcdacanalyzer',
         body: {
           query: {
             // match: { name_cdac: 'pralhad' }
