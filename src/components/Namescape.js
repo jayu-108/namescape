@@ -65,14 +65,19 @@ function Namescape() {
     return (
         <>
             <div className="container-sm" >
-                <div className="row" >
-                    <h1 className='my-2' style={{display: "flex", justifyContent: "center", alignItems: "center"}}>CDAC-NameScape Search</h1>
+                <div className="row mt-2" >
+                    <div className="col-1">
+                        <img src='https://gisttransserver.in/assets/img/logo.svg' alt='cdac-logo' style={{ height: "100px", width: "100px" }}></img>
+                    </div>
+                    <div className="col-6 mt-3">
+                        <h1 className='my-2' style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>CDAC-NameScape Search</h1>
+                    </div>
                 </div>
                 <form className='mx-2' >
                     <div className="row">
                         <div className="col-3">
                             <label className='m-1'>Query :</label>
-                            <input name="searchquery" id="searchquery" onChange={onChange} style={{height: "36px",borderColor: "black", borderRadius: "4px", borderStyle: "solid", borderWidth: "1px"}}/>
+                            <input name="searchquery" id="searchquery" onChange={onChange} style={{ height: "36px", borderColor: "black", borderRadius: "4px", borderStyle: "solid", borderWidth: "1px" }} />
                         </div>
                         <div className="col-3">
                             <label className='m-1'>State :</label>
@@ -82,20 +87,24 @@ function Namescape() {
                                 options={options}
                                 styles={{
                                     control: (baseStyles, state) => ({
-                                      ...baseStyles,
-                                      borderColor: 'black',
+                                        ...baseStyles,
+                                        borderColor: 'black',
                                     }),
-                                  }}
+                                }}
                             />
                         </div>
                         <div className="col">
                             <div className='mt-2'></div>
-                            {<button className="btn btn-sm btn-primary mx-1 mt-4" onClick={handleClick} type='submit' style={{height: "36px"}}>Search</button>}
+                            {<button className="btn btn-sm btn-primary mx-1 mt-4" onClick={handleClick} type='submit' style={{ height: "36px" }}>Search</button>}
                         </div>
                     </div>
                 </form>
-                {!isEmpty ? (<DataTable columns={columns} data={data} pagination
-                />) : (<p>"Please Enter a Query and State"</p>)}
+                <div className="row">
+                    <div className="col-6">
+                        {!isEmpty ? (<DataTable columns={columns} data={data} pagination showGridlines
+                        />) : (<p>"Please Enter a Query and State"</p>)}
+                    </div>
+                </div>
             </div>
         </>
     )
