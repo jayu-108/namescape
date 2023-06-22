@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import DataTable from 'react-data-table-component';
 import Select from 'react-select';
 
 function Namescape() {
-    var data;
+    // var data;
+    let isEmpty = false;
+    let [data, setData] = useState('')
     const [searchquery, setSearchQuery] = useState('');
-    const [result, setResult] = useState([]);
     const [selectedOption, setSelectedOption] = useState('');
     const options = [
         { value: 'maharashtra', label: 'Maharashtra' },
@@ -15,7 +16,7 @@ function Namescape() {
         { value: 'karnatak', label: 'Karnataka' },
         { value: 'manipur', label: 'Manipur' },
         { value: 'kerala', label: 'Kerala' },
-        { value: 'orissa', label: 'Orissa' },
+        { value: 'odisha', label: 'Odisha' },
         { value: 'punjab', label: 'Punjab' },
         { value: 'telangana', label: 'Telangana' },
         { value: 'tamilnadu', label: 'Tamilnadu' }
@@ -38,13 +39,14 @@ function Namescape() {
 
         const json = await response.json();
         if (json.success) {
-            setResult(json.name)
-            // console.log(searchquery)
-            console.log(selectedOption.value)
-            console.log(json.total)
-            console.log(result)
-        } else {
-            setResult('');
+            isEmpty = true;
+            setData(json.name.map((element) => {
+                // console.log(element.name)
+                return {
+                    name: element.name,
+                    name_in: element.name_in
+                }
+            }))
         }
     }
 
@@ -52,51 +54,48 @@ function Namescape() {
         {
             name: 'Name',
             selector: row => row.name,
-        },
-        {
-            name: 'Name_in',
-            selector: row => row.name_in,
-        },
+        }
+        // ,
+        // {
+        //     name: 'Name_in',
+        //     selector: row => row.name_in,
+        // },
     ]
-    var isEmpty = false;
-    if (searchquery !== '' && result !== '') {
-        isEmpty = true;
-        data = result.map((element) => {
-            console.log(element.name)
-            return {
-                name: element.name,
-                name_in: element.name_in
-            }
-        })
-    }
 
-return (
+    return (
         <>
-            <div className="container " >
-                <div className="row">
-                    <h1 className='my-2'>NameScape Search</h1>
+            <div className="container-sm" >
+                <div className="row" >
+                    <h1 className='my-2' style={{display: "flex", justifyContent: "center", alignItems: "center"}}>CDAC-NameScape Search</h1>
                 </div>
-                <form>
+                <form className='mx-2' >
                     <div className="row">
-                        <div className="col">
-                            <label>
-                                Query <input name="searchquery" id="searchquery" onChange={onChange} />
-                            </label>
+                        <div className="col-3">
+                            <label className='m-1'>Query :</label>
+                            <input name="searchquery" id="searchquery" onChange={onChange} style={{height: "36px",borderColor: "black", borderRadius: "4px", borderStyle: "solid", borderWidth: "1px"}}/>
                         </div>
-                        <div className="col">
+                        <div className="col-3">
+                            <label className='m-1'>State :</label>
                             <Select
                                 defaultValue={selectedOption}
                                 onChange={setSelectedOption}
                                 options={options}
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                      ...baseStyles,
+                                      borderColor: 'black',
+                                    }),
+                                  }}
                             />
                         </div>
                         <div className="col">
-                            <button className="btn btn-sm btn-primary mx-2" onClick={handleClick} type='submit'>Search</button>
+                            <div className='mt-2'></div>
+                            {<button className="btn btn-sm btn-primary mx-1 mt-4" onClick={handleClick} type='submit' style={{height: "36px"}}>Search</button>}
                         </div>
                     </div>
                 </form>
-                {isEmpty ? (<DataTable columns={columns} data={data} pagination
-                />) : (<p>"Please Enter a query"</p>)}
+                {!isEmpty ? (<DataTable columns={columns} data={data} pagination
+                />) : (<p>"Please Enter a Query and State"</p>)}
             </div>
         </>
     )

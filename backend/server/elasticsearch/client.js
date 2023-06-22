@@ -1,7 +1,10 @@
 const { Client } = require('@elastic/elasticsearch');
+const { elasticsearchhost } = require('../../config');
+
+// const elasticsearchhost = process.env.ELASTICSEARCH_HOST
 
 const client = new Client({
-    node : 'http://10.208.36.141:9200'
+    node : elasticsearchhost
 })
 
 client.ping()
