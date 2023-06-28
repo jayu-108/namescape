@@ -13,7 +13,7 @@ function Namescape() {
         { value: 'assam', label: 'Assam' },
         { value: 'gujrat', label: 'Gujarath' },
         { value: 'tripura', label: 'Tripura' },
-        { value: 'karnatak', label: 'Karnataka' },
+        { value: 'karnataka', label: 'Karnataka' },
         { value: 'manipur', label: 'Manipur' },
         { value: 'kerala', label: 'Kerala' },
         { value: 'odisha', label: 'Odisha' },
@@ -28,26 +28,32 @@ function Namescape() {
 
     const handleClick = async (e) => {
         e.preventDefault();
-
-        const response = await fetch('http://10.208.10.158:5000/search', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({ query: searchquery, state: selectedOption.value })
-        })
-
-        const json = await response.json();
-        if (json.success) {
-            isEmpty = true;
-            setData(json.name.map((element) => {
-                // console.log(element.name)
-                return {
-                    name: element.name,
-                    name_in: element.name_in
-                }
-            }))
+        try {
+            const response = await fetch('http://10.208.10.158:5000/search', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({ query: searchquery, state: selectedOption.value })
+            })
+    
+            const json = await response.json();
+            if (json.success) {
+                isEmpty = true;
+                setData(json.name.map((element) => {
+                    // console.log(element.name)
+                    return {
+                        name: element.name,
+                        name_in: element.name_in
+                    }
+                }))
+            }            
+        } catch (error) {
+            // console.error(error.message);
+            console.log("Server Down");
+            // res.status(500).send("Internal Server Error")
         }
+
     }
 
     const columns = [
