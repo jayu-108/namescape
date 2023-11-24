@@ -50,7 +50,7 @@ app.post('/search',
                       },
                       {
                         match: {
-                          name_in: {
+                          vernacular_name: {
                             query: `"\" ${query} \ "`,
                             boost: 3,
                             operator: "and"
@@ -68,7 +68,7 @@ app.post('/search',
                       },
                       {
                         match: {
-                          name_in_cdac: {
+                          vernacular_name_in_cdac: {
                             query: `"\" ${query} \ "`,
                             boost: 2,
                             operator: "and"
@@ -77,18 +77,19 @@ app.post('/search',
                       }
                     ]
                   }
-                },
-                {
-                  bool: {
-                    must: [
-                      {
-                        match: {
-                          state: state
-                        }
-                      }
-                    ]
-                  }
                 }
+                //,
+                // {
+                //   bool: {
+                //     must: [
+                //       {
+                //         match: {
+                //           state: state
+                //         }
+                //       }
+                //     ]
+                //   }
+                // }
               ]
             }
           }
@@ -99,7 +100,7 @@ app.post('/search',
         const arr = element._source;
         return {
           name: arr.name,
-          name_in: arr.name_in
+          vernacular_name: arr.vernacular_name
         }
       })
       success = true;

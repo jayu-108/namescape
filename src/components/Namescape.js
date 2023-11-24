@@ -29,7 +29,7 @@ function Namescape() {
     const handleClick = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://10.208.10.158:5000/search', {
+            const response = await fetch('http://10.208.10.70:5000/search', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -44,7 +44,7 @@ function Namescape() {
                     // console.log(element.name)
                     return {
                         name: element.name,
-                        name_in: element.name_in
+                        vernacular_name: element.vernacular_name
                     }
                 }))
             }            
@@ -61,11 +61,11 @@ function Namescape() {
             name: 'Name',
             selector: row => row.name,
         }
-        // ,
-        // {
-        //     name: 'Name_in',
-        //     selector: row => row.name_in,
-        // },
+        ,
+        {
+            name: 'vernacular_name',
+            selector: row => row.vernacular_name,
+        }
     ]
 
     return (
