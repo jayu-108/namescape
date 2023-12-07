@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import DataTable from 'react-data-table-component';
 import Select from 'react-select';
-
+import ResultTable from './ResultTable';
 function Namescape() {
     // var data;
     let isEmpty = false;
@@ -113,6 +113,7 @@ function Namescape() {
                         <div className="col-6">
                             {!isEmpty ? (<DataTable columns={columns} data={data} pagination showGridlines
                             />) : (<p>"Please Enter a Query and State"</p>)}
+                            {/* <ResultTable ></ResultTable> */}
                         </div>
                     </div>
                 </div>

@@ -71,7 +71,7 @@ function Namescape() {
     return (
         <>
             <div>
-                <div className="container-sm" >
+                <div className="container-md" >
                     <div className="row mt-2" >
                         <div className="col-2"></div>
                         <div className="col-1">
@@ -109,8 +109,8 @@ function Namescape() {
                         </div>
                     </form>
                     <div className="row" >
-                        <div className="col-2"></div>
-                        <div className="col-6">
+                        {/* <div className="col-2"></div> */}
+                        <div className="col-10">
                             {!isEmpty ? (<DataTable columns={columns} data={data} pagination showGridlines
                             />) : (<p>"Please Enter a Query and State"</p>)}
                         </div>
