@@ -22,6 +22,19 @@ function Namescape() {
         { value: 'tamilnadu', label: 'Tamilnadu' }
     ]
 
+    const customStyles = {
+        table: {
+            style: {
+                border: '1px blue',
+            },
+        },
+        headRow: {
+            style: {
+                backgroundColor: 'lightgray',
+            },
+        },
+
+    }
     const onChange = (e) => {
         setSearchQuery(e.target.value)
     }
@@ -36,7 +49,7 @@ function Namescape() {
                 },
                 body: JSON.stringify({ queryA: searchquery })
             })
-    
+
             const json = await response.json();
             if (json.success) {
                 isEmpty = true;
@@ -47,7 +60,7 @@ function Namescape() {
                         vernacular_address: element.vernacular_address
                     }
                 }))
-            }            
+            }
         } catch (error) {
             // console.error(error.message);
             console.log("Server Down");
@@ -58,12 +71,11 @@ function Namescape() {
 
     const columns = [
         {
-            name: 'address',
+            name: 'Address',
             selector: row => row.address,
-        }
-        ,
+        },
         {
-            name: 'vernacular_address',
+            name: 'Vernacular Address',
             selector: row => row.vernacular_address,
         }
     ]
@@ -72,48 +84,40 @@ function Namescape() {
         <>
             <div>
                 <div className="container-md" >
-                    <div className="row mt-2" >
-                        <div className="col-2"></div>
-                        <div className="col-1">
-                            <img src='https://gisttransserver.in/assets/img/logo.svg' alt='cdac-logo' style={{ height: "100px", width: "100px" }}></img>
-                        </div>
-                        <div className="col-6 mt-3">
-                            <h1 className='m-2'>CDAC-NameScape Search</h1>
-                        </div>
+                    <div class="container">
+                        <header class="d-flex justify-content-center py-3" style={{ backgroundColor: "lightblue" }}>
+                            <ul class="nav nav-pills">
+                                <li class="nav-item"><img src='https://gisttransserver.in/assets/img/logo.svg' alt='cdac-logo' style={{ height: "100px", width: "100px" }}></img></li>
+                                <li class="nav-item"><h1 className='mx-2 mt-3'>CDAC-NameScape Search</h1></li>
+                            </ul>
+                        </header>
                     </div>
-                    <form className='mx-2' >
-                        <div className="row" >
-                            <div className="col-2"></div>
-                            <div className="col-3" >
-                                <label className='m-1'>Query :</label>
-                                <input name="searchquery" id="searchquery" onChange={onChange} style={{ height: "36px", borderColor: "black", borderRadius: "4px", borderStyle: "solid", borderWidth: "1px" }} />
-                            </div>
-                            {/* <div className="col-3">
-                                <label className='m-1'>State :</label>
-                                <Select
-                                    defaultValue={selectedOption}
-                                    onChange={setSelectedOption}
-                                    options={options}
-                                    styles={{
-                                        control: (baseStyles, state) => ({
-                                            ...baseStyles,
-                                            borderColor: 'black',
-                                        }),
-                                    }}
-                                />
-                            </div> */}
-                            <div className="col">
-                                <div className='mt-2'></div>
-                                {<button className="btn btn-sm btn-primary mx-1 mt-4" onClick={handleClick} type='submit' style={{ height: "36px" }}>Search</button>}
-                            </div>
+                    <form>
+                        <div class="container">
+                            <header class="d-flex justify-content-center py-3">
+                                <ul class="nav nav-pills">
+                                    <li class="nav-item mx-2 mt-1">Query :</li>
+                                    <li class="nav-item">
+                                        <div >
+                                            <input name="searchquery" id="searchquery" onChange={onChange} style={{ height: "36px", borderColor: "black", borderRadius: "4px", borderStyle: "solid", borderWidth: "1px" }} />
+                                        </div></li>
+                                    <li class="nav-item">
+                                        <div>
+                                            {/* <div ></div> */}
+                                            {<button className="btn btn-sm btn-primary mx-2 " onClick={handleClick} type='submit' style={{ height: "36px" }}>Search</button>}
+                                        </div>
+                                    </li>
+                                </ul>
+                            </header>
                         </div>
                     </form>
                     <div className="row" >
-                        {/* <div className="col-2"></div> */}
-                        <div className="col-10">
-                            {!isEmpty ? (<DataTable columns={columns} data={data} pagination showGridlines
+                        <div className="col"></div>
+                        <div className="col-10 mt-1" >
+                            {!isEmpty ? (<DataTable columns={columns} data={data} customStyles={customStyles} pagination showGridlines
                             />) : (<p>"Please Enter a Query and State"</p>)}
                         </div>
+                        <div className="col"></div>
                     </div>
                 </div>
             </div>
