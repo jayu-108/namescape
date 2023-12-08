@@ -16,8 +16,10 @@ console.log(index_address);
 app.listen(node_port, () => console.log(`Server listening at http://localhost:${node_port}`));
 
 app.post('/search',
-  [body('query').notEmpty(),
-  body('state').notEmpty()],
+  [body('query').notEmpty()
+  // ,
+  // body('state').notEmpty()
+],
   async (req, res) => {
     let success = false;
     const errors = validationResult(req);
@@ -131,6 +133,7 @@ app.post('/searchaddress',
     const enQuery = encodeURIComponent(queryA);
 
     console.log(enQuery)
+    console.log("original "+ queryA)
 
     try {
       const result = await client.search({
@@ -210,8 +213,10 @@ app.post('/searchaddress',
             bool: {
               must: [
                 {
-                  match_phrase: {
-                    "address": `"\" ${queryA} \ "`
+                  multi_match:{
+                    query: `"\" ${queryA} \ "`,
+                    fields: ["address", "vernacular_address"],
+                    type: 'phrase'
                   }
                 }
               ],

@@ -2,7 +2,10 @@ import React, { useState } from 'react'
 import DataTable from 'react-data-table-component';
 import Select from 'react-select';
 import ResultTable from './ResultTable';
-function Namescape() {
+
+// const {customStyles} = require('../css/tableStyle');
+
+function NameKn() {
     // var data;
     let isEmpty = false;
     let [data, setData] = useState('')
@@ -21,6 +24,20 @@ function Namescape() {
         { value: 'telangana', label: 'Telangana' },
         { value: 'tamilnadu', label: 'Tamilnadu' }
     ]
+
+    const customStyles = {
+        table: {
+            style: {
+                border: '1px blue',
+            },
+        },
+        headRow: {
+            style: {
+                backgroundColor: 'lightgray',
+            },
+        },
+
+    }
 
     const onChange = (e) => {
         setSearchQuery(e.target.value)
@@ -72,15 +89,15 @@ function Namescape() {
         <>
             <div>
                 <div className="container-sm" >
-                <div class="container">
-                        <header class="d-flex justify-content-center py-3" style={{ backgroundColor: "lightblue" }}>
-                            <ul class="nav nav-pills">
-                                <li class="nav-item"><img src='https://gisttransserver.in/assets/img/logo.svg' alt='cdac-logo' style={{ height: "100px", width: "100px" }}></img></li>
-                                <li class="nav-item"><h1 className='mx-2 mt-3'>CDAC-NameScape Search</h1></li>
+                <div className="container">
+                        <header className="d-flex justify-content-center py-3" style={{ backgroundColor: "lightblue" }}>
+                            <ul className="nav nav-pills">
+                                <li className="nav-item"><img src='https://gisttransserver.in/assets/img/logo.svg' alt='cdac-logo' style={{ height: "100px", width: "100px" }}></img></li>
+                                <li className="nav-item"><h1 className='mx-2 mt-3'>CDAC-NameScape Search</h1></li>
                             </ul>
                         </header>
                     </div>
-                    <form className='mx-2' >
+                    {/* <form className='mx-2' >
                         <div className="row" >
                             <div className="col-2"></div>
                             <div className="col-3" >
@@ -106,14 +123,33 @@ function Namescape() {
                                 {<button className="btn btn-sm btn-primary mx-1 mt-4" onClick={handleClick} type='submit' style={{ height: "36px" }}>Search</button>}
                             </div>
                         </div>
+                    </form> */}
+                    <form>
+                        <div className="container">
+                            <header className="d-flex justify-content-center py-3">
+                                <ul className="nav nav-pills">
+                                    <li className="nav-item mx-2 mt-1">Query :</li>
+                                    <li className="nav-item">
+                                        <div >
+                                            <input name="searchquery" id="searchquery" onChange={onChange} style={{ height: "36px", borderColor: "black", borderRadius: "4px", borderStyle: "solid", borderWidth: "1px" }} />
+                                        </div></li>
+                                    <li className="nav-item">
+                                        <div>
+                                            {/* <div ></div> */}
+                                            {<button className="btn btn-sm btn-primary mx-2 " onClick={handleClick} type='submit' style={{ height: "36px" }}>Search</button>}
+                                        </div>
+                                    </li>
+                                </ul>
+                            </header>
+                        </div>
                     </form>
                     <div className="row" >
-                        <div className="col-2"></div>
-                        <div className="col-6">
-                            {!isEmpty ? (<DataTable columns={columns} data={data} pagination showGridlines
+                        <div className="col"></div>
+                        <div className="col-8 mt-1" >
+                            {!isEmpty ? (<DataTable columns={columns} data={data} customStyles={customStyles} pagination showGridlines
                             />) : (<p>"Please Enter a Query and State"</p>)}
-                            {/* <ResultTable ></ResultTable> */}
                         </div>
+                        <div className="col"></div>
                     </div>
                 </div>
             </div>
@@ -122,4 +158,4 @@ function Namescape() {
     )
 }
 
-export default Namescape
+export default NameKn

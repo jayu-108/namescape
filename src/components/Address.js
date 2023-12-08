@@ -7,20 +7,6 @@ function Namescape() {
     let isEmpty = false;
     let [data, setData] = useState('')
     const [searchquery, setSearchQuery] = useState('');
-    const [selectedOption, setSelectedOption] = useState('');
-    const options = [
-        { value: 'maharashtra', label: 'Maharashtra' },
-        { value: 'assam', label: 'Assam' },
-        { value: 'gujrat', label: 'Gujarath' },
-        { value: 'tripura', label: 'Tripura' },
-        { value: 'karnataka', label: 'Karnataka' },
-        { value: 'manipur', label: 'Manipur' },
-        { value: 'kerala', label: 'Kerala' },
-        { value: 'odisha', label: 'Odisha' },
-        { value: 'punjab', label: 'Punjab' },
-        { value: 'telangana', label: 'Telangana' },
-        { value: 'tamilnadu', label: 'Tamilnadu' }
-    ]
 
     const customStyles = {
         table: {
@@ -30,10 +16,24 @@ function Namescape() {
         },
         headRow: {
             style: {
-                backgroundColor: 'lightgray',
+                backgroundColor: 'lightblue',
+
             },
         },
-
+        headCells: {
+            style: {
+                borderBottom: '1px solid #ccc',
+                borderRight: '1px solid #ccc',
+                borderLeft: '1px solid #ccc'
+            },
+        },
+        cells: {
+            style: {
+                borderRight: '1px solid #ccc',
+                borderLeft: '1px solid #ccc',
+                borderBottom: '1px solid #ccc',
+            },
+        },
     }
     const onChange = (e) => {
         setSearchQuery(e.target.value)
@@ -83,28 +83,27 @@ function Namescape() {
     return (
         <>
             <div>
-                <div className="container-md" >
-                    <div class="container">
-                        <header class="d-flex justify-content-center py-3" style={{ backgroundColor: "lightblue" }}>
-                            <ul class="nav nav-pills">
-                                <li class="nav-item"><img src='https://gisttransserver.in/assets/img/logo.svg' alt='cdac-logo' style={{ height: "100px", width: "100px" }}></img></li>
-                                <li class="nav-item"><h1 className='mx-2 mt-3'>CDAC-NameScape Search</h1></li>
+                <div className="container-md">
+                    <div className="container">
+                        <header className="d-flex justify-content-center py-3" style={{ backgroundColor: "#154063" }}>
+                            <ul className="nav nav-pills">
+                                <li className="nav-item"><img src='https://gisttransserver.in/assets/img/logo.svg' alt='cdac-logo' style={{ height: "100px", width: "100px" }}></img></li>
+                                <li className="nav-item"><h1 className='mx-2 mt-3' style={{ color: "white" }}>CDAC Name & Address Search</h1></li>
                             </ul>
                         </header>
                     </div>
                     <form>
-                        <div class="container">
-                            <header class="d-flex justify-content-center py-3">
-                                <ul class="nav nav-pills">
-                                    <li class="nav-item mx-2 mt-1">Query :</li>
-                                    <li class="nav-item">
+                        <div className="container">
+                            <header className="d-flex justify-content-center py-3">
+                                <ul className="nav nav-pills">
+                                    <li className="nav-item mx-2 mt-1">Query :</li>
+                                    <li className="nav-item">
                                         <div >
                                             <input name="searchquery" id="searchquery" onChange={onChange} style={{ height: "36px", borderColor: "black", borderRadius: "4px", borderStyle: "solid", borderWidth: "1px" }} />
                                         </div></li>
-                                    <li class="nav-item">
+                                    <li className="nav-item">
                                         <div>
-                                            {/* <div ></div> */}
-                                            {<button className="btn btn-sm btn-primary mx-2 " onClick={handleClick} type='submit' style={{ height: "36px" }}>Search</button>}
+                                            {<button className="btn btn-md mx-2 " onClick={handleClick} type='submit' style={{ background:"#154063", color: "white"}}>Search</button>}
                                         </div>
                                     </li>
                                 </ul>
