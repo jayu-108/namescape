@@ -22,6 +22,34 @@ function Namescape() {
         { value: 'tamilnadu', label: 'Tamilnadu' }
     ]
 
+    const customStyles = {
+        table: {
+            style: {
+                border: '1px blue',
+            },
+        },
+        headRow: {
+            style: {
+                backgroundColor: 'lightblue',
+
+            },
+        },
+        headCells: {
+            style: {
+                borderBottom: '1px solid #ccc',
+                borderRight: '1px solid #ccc',
+                borderLeft: '1px solid #ccc'
+            },
+        },
+        cells: {
+            style: {
+                borderRight: '1px solid #ccc',
+                borderLeft: '1px solid #ccc',
+                borderBottom: '1px solid #ccc',
+            },
+        },
+    }
+
     const onChange = (e) => {
         setSearchQuery(e.target.value)
     }
@@ -36,7 +64,7 @@ function Namescape() {
                 },
                 body: JSON.stringify({ query: searchquery, state: selectedOption.value })
             })
-    
+
             const json = await response.json();
             if (json.success) {
                 isEmpty = true;
@@ -47,7 +75,7 @@ function Namescape() {
                         vernacular_name: element.vernacular_name
                     }
                 }))
-            }            
+            }
         } catch (error) {
             // console.error(error.message);
             console.log("Server Down");
@@ -71,12 +99,12 @@ function Namescape() {
     return (
         <>
             <div>
-                <div className="container-sm" >
-                <div class="container">
-                        <header class="d-flex justify-content-center py-3" style={{ backgroundColor: "lightblue" }}>
-                            <ul class="nav nav-pills">
-                                <li class="nav-item"><img src='https://gisttransserver.in/assets/img/logo.svg' alt='cdac-logo' style={{ height: "100px", width: "100px" }}></img></li>
-                                <li class="nav-item"><h1 className='mx-2 mt-3'>CDAC-NameScape Search</h1></li>
+                <div className="container-md" >
+                    <div className="container">
+                        <header className="d-flex justify-content-center py-3" style={{ backgroundColor: "#154063" }}>
+                            <ul className="nav nav-pills">
+                                <li className="nav-item"><img src='https://gisttransserver.in/assets/img/logo.svg' alt='cdac-logo' style={{ height: "100px", width: "100px" }}></img></li>
+                                <li className="nav-item"><h1 className='mx-2 mt-3' style={{ color: "white" }}>CDAC Name & Address Search</h1></li>
                             </ul>
                         </header>
                     </div>
@@ -108,12 +136,12 @@ function Namescape() {
                         </div>
                     </form>
                     <div className="row" >
-                        <div className="col-2"></div>
-                        <div className="col-6">
-                            {!isEmpty ? (<DataTable columns={columns} data={data} pagination showGridlines
+                        <div className="col"></div>
+                        <div className="col-8 mt-1" >
+                            {!isEmpty ? (<DataTable columns={columns} data={data} customStyles={customStyles} pagination showGridlines
                             />) : (<p>"Please Enter a Query and State"</p>)}
-                            {/* <ResultTable ></ResultTable> */}
                         </div>
+                        <div className="col"></div>
                     </div>
                 </div>
             </div>

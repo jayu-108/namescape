@@ -26,4 +26,4 @@ const customStyles = {
     },
 }
 
-export default customStyles
+module.exports = customStyles;

@@ -3,7 +3,7 @@ import DataTable from 'react-data-table-component';
 import Select from 'react-select';
 import ResultTable from './ResultTable';
 
-// const {customStyles} = require('../css/tableStyle');
+// const customStyles = require('../css/tableStyle');
 
 function NameKn() {
     // var data;
@@ -33,11 +33,26 @@ function NameKn() {
         },
         headRow: {
             style: {
-                backgroundColor: 'lightgray',
+                backgroundColor: 'lightblue',
+
             },
         },
-
+        headCells: {
+            style: {
+                borderBottom: '1px solid #ccc',
+                borderRight: '1px solid #ccc',
+                borderLeft: '1px solid #ccc'
+            },
+        },
+        cells: {
+            style: {
+                borderRight: '1px solid #ccc',
+                borderLeft: '1px solid #ccc',
+                borderBottom: '1px solid #ccc',
+            },
+        },
     }
+
 
     const onChange = (e) => {
         setSearchQuery(e.target.value)
@@ -46,14 +61,14 @@ function NameKn() {
     const handleClick = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://10.208.10.70:5000/search', {
+            const response = await fetch('http://10.208.10.70:5000/name/search', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
                 },
                 body: JSON.stringify({ query: searchquery, state: selectedOption.value })
             })
-    
+
             const json = await response.json();
             if (json.success) {
                 isEmpty = true;
@@ -64,7 +79,7 @@ function NameKn() {
                         vernacular_name: element.vernacular_name
                     }
                 }))
-            }            
+            }
         } catch (error) {
             // console.error(error.message);
             console.log("Server Down");
@@ -89,11 +104,11 @@ function NameKn() {
         <>
             <div>
                 <div className="container-sm" >
-                <div className="container">
-                        <header className="d-flex justify-content-center py-3" style={{ backgroundColor: "lightblue" }}>
+                    <div className="container">
+                        <header className="d-flex justify-content-center py-3" style={{ backgroundColor: "#154063" }}>
                             <ul className="nav nav-pills">
                                 <li className="nav-item"><img src='https://gisttransserver.in/assets/img/logo.svg' alt='cdac-logo' style={{ height: "100px", width: "100px" }}></img></li>
-                                <li className="nav-item"><h1 className='mx-2 mt-3'>CDAC-NameScape Search</h1></li>
+                                <li className="nav-item"><h1 className='mx-2 mt-3' style={{ color: "white" }}>CDAC Name & Address Search</h1></li>
                             </ul>
                         </header>
                     </div>

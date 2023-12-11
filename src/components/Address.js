@@ -42,7 +42,7 @@ function Namescape() {
     const handleClick = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://10.208.10.70:5000/searchaddress', {
+            const response = await fetch('http://10.208.10.70:5000/address/searchaddress', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
