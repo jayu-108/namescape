@@ -161,8 +161,7 @@ function NameKn() {
                     <div className="row" >
                         <div className="col"></div>
                         <div className="col-8 mt-1" >
-                            {!isEmpty ? (<DataTable columns={columns} data={data} customStyles={customStyles} pagination showGridlines
-                            />) : (<p>"Please Enter a Query and State"</p>)}
+                            {!isEmpty ? (<ResultTable data={data} columns={columns}/>) : (<p>"Please Enter a Query and State"</p>)}
                         </div>
                         <div className="col"></div>
                     </div>

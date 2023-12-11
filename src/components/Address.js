@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import DataTable from 'react-data-table-component';
-import Select from 'react-select';
+import ResultTable from './ResultTable';
 
 function Namescape() {
     // var data;
@@ -8,33 +7,6 @@ function Namescape() {
     let [data, setData] = useState('')
     const [searchquery, setSearchQuery] = useState('');
 
-    const customStyles = {
-        table: {
-            style: {
-                border: '1px blue',
-            },
-        },
-        headRow: {
-            style: {
-                backgroundColor: 'lightblue',
-
-            },
-        },
-        headCells: {
-            style: {
-                borderBottom: '1px solid #ccc',
-                borderRight: '1px solid #ccc',
-                borderLeft: '1px solid #ccc'
-            },
-        },
-        cells: {
-            style: {
-                borderRight: '1px solid #ccc',
-                borderLeft: '1px solid #ccc',
-                borderBottom: '1px solid #ccc',
-            },
-        },
-    }
     const onChange = (e) => {
         setSearchQuery(e.target.value)
     }
@@ -103,7 +75,7 @@ function Namescape() {
                                         </div></li>
                                     <li className="nav-item">
                                         <div>
-                                            {<button className="btn btn-md mx-2 " onClick={handleClick} type='submit' style={{ background:"#154063", color: "white"}}>Search</button>}
+                                            {<button className="btn btn-md mx-2 " onClick={handleClick} type='submit' style={{ background: "#154063", color: "white" }}>Search</button>}
                                         </div>
                                     </li>
                                 </ul>
@@ -113,8 +85,7 @@ function Namescape() {
                     <div className="row" >
                         <div className="col"></div>
                         <div className="col-10 mt-1" >
-                            {!isEmpty ? (<DataTable columns={columns} data={data} customStyles={customStyles} pagination showGridlines
-                            />) : (<p>"Please Enter a Query and State"</p>)}
+                            {!isEmpty ? (<ResultTable data={data} columns={columns} />) : (<p>"Please Enter a Query and State"</p>)}
                         </div>
                         <div className="col"></div>
                     </div>

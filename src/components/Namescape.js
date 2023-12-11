@@ -1,54 +1,14 @@
 import React, { useState } from 'react'
-import DataTable from 'react-data-table-component';
 import Select from 'react-select';
 import ResultTable from './ResultTable';
+import Dropdown from './Dropdown';
+
 function Namescape() {
     // var data;
     let isEmpty = false;
     let [data, setData] = useState('')
     const [searchquery, setSearchQuery] = useState('');
     const [selectedOption, setSelectedOption] = useState('');
-    const options = [
-        { value: 'maharashtra', label: 'Maharashtra' },
-        { value: 'assam', label: 'Assam' },
-        { value: 'gujrat', label: 'Gujarath' },
-        { value: 'tripura', label: 'Tripura' },
-        { value: 'karnataka', label: 'Karnataka' },
-        { value: 'manipur', label: 'Manipur' },
-        { value: 'kerala', label: 'Kerala' },
-        { value: 'odisha', label: 'Odisha' },
-        { value: 'punjab', label: 'Punjab' },
-        { value: 'telangana', label: 'Telangana' },
-        { value: 'tamilnadu', label: 'Tamilnadu' }
-    ]
-
-    const customStyles = {
-        table: {
-            style: {
-                border: '1px blue',
-            },
-        },
-        headRow: {
-            style: {
-                backgroundColor: 'lightblue',
-
-            },
-        },
-        headCells: {
-            style: {
-                borderBottom: '1px solid #ccc',
-                borderRight: '1px solid #ccc',
-                borderLeft: '1px solid #ccc'
-            },
-        },
-        cells: {
-            style: {
-                borderRight: '1px solid #ccc',
-                borderLeft: '1px solid #ccc',
-                borderBottom: '1px solid #ccc',
-            },
-        },
-    }
 
     const onChange = (e) => {
         setSearchQuery(e.target.value)
@@ -57,7 +17,7 @@ function Namescape() {
     const handleClick = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://10.208.10.70:5000/search', {
+            const response = await fetch('http://10.208.10.70:5000/name/search', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -117,17 +77,7 @@ function Namescape() {
                             </div>
                             <div className="col-3">
                                 <label className='m-1'>State :</label>
-                                <Select
-                                    defaultValue={selectedOption}
-                                    onChange={setSelectedOption}
-                                    options={options}
-                                    styles={{
-                                        control: (baseStyles, state) => ({
-                                            ...baseStyles,
-                                            borderColor: 'black',
-                                        }),
-                                    }}
-                                />
+                                <Dropdown selectedOption={selectedOption} onChange={setSelectedOption} />
                             </div>
                             <div className="col">
                                 <div className='mt-2'></div>
@@ -137,9 +87,8 @@ function Namescape() {
                     </form>
                     <div className="row" >
                         <div className="col"></div>
-                        <div className="col-8 mt-1" >
-                            {!isEmpty ? (<DataTable columns={columns} data={data} customStyles={customStyles} pagination showGridlines
-                            />) : (<p>"Please Enter a Query and State"</p>)}
+                        <div className="col-10 mt-1" >
+                            {!isEmpty ? (<ResultTable data={data} columns={columns} />) : (<p>"Please Enter a Query and State"</p>)}
                         </div>
                         <div className="col"></div>
                     </div>
