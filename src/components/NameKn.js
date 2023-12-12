@@ -1,60 +1,13 @@
 import React, { useState } from 'react'
-import DataTable from 'react-data-table-component';
-import Select from 'react-select';
 import ResultTable from './ResultTable';
-
-// const customStyles = require('../css/tableStyle');
 
 function NameKn() {
     // var data;
     let isEmpty = false;
     let [data, setData] = useState('')
     const [searchquery, setSearchQuery] = useState('');
-    const [selectedOption, setSelectedOption] = useState('');
-    const options = [
-        { value: 'maharashtra', label: 'Maharashtra' },
-        { value: 'assam', label: 'Assam' },
-        { value: 'gujrat', label: 'Gujarath' },
-        { value: 'tripura', label: 'Tripura' },
-        { value: 'karnataka', label: 'Karnataka' },
-        { value: 'manipur', label: 'Manipur' },
-        { value: 'kerala', label: 'Kerala' },
-        { value: 'odisha', label: 'Odisha' },
-        { value: 'punjab', label: 'Punjab' },
-        { value: 'telangana', label: 'Telangana' },
-        { value: 'tamilnadu', label: 'Tamilnadu' }
-    ]
 
-    const customStyles = {
-        table: {
-            style: {
-                border: '1px blue',
-            },
-        },
-        headRow: {
-            style: {
-                backgroundColor: 'lightblue',
-
-            },
-        },
-        headCells: {
-            style: {
-                borderBottom: '1px solid #ccc',
-                borderRight: '1px solid #ccc',
-                borderLeft: '1px solid #ccc'
-            },
-        },
-        cells: {
-            style: {
-                borderRight: '1px solid #ccc',
-                borderLeft: '1px solid #ccc',
-                borderBottom: '1px solid #ccc',
-            },
-        },
-    }
-
-
-    const onChange = (e) => {
+    const handleQuery = (e) => {
         setSearchQuery(e.target.value)
     }
 
@@ -66,7 +19,7 @@ function NameKn() {
                 headers: {
                     'content-type': 'application/json'
                 },
-                body: JSON.stringify({ query: searchquery, state: selectedOption.value })
+                body: JSON.stringify({ query: searchquery })
             })
 
             const json = await response.json();
@@ -88,6 +41,10 @@ function NameKn() {
 
     }
 
+    const handleReset = (e) => {
+        setSearchQuery('');
+    }
+
     const columns = [
         {
             name: 'Name',
@@ -104,54 +61,26 @@ function NameKn() {
         <>
             <div>
                 <div className="container-sm" >
-                    <div className="container">
-                        <header className="d-flex justify-content-center py-3" style={{ backgroundColor: "#154063" }}>
-                            <ul className="nav nav-pills">
-                                <li className="nav-item"><img src='https://gisttransserver.in/assets/img/logo.svg' alt='cdac-logo' style={{ height: "100px", width: "100px" }}></img></li>
-                                <li className="nav-item"><h1 className='mx-2 mt-3' style={{ color: "white" }}>CDAC Name & Address Search</h1></li>
-                            </ul>
-                        </header>
-                    </div>
-                    {/* <form className='mx-2' >
-                        <div className="row" >
-                            <div className="col-2"></div>
-                            <div className="col-3" >
-                                <label className='m-1'>Query :</label>
-                                <input name="searchquery" id="searchquery" onChange={onChange} style={{ height: "36px", borderColor: "black", borderRadius: "4px", borderStyle: "solid", borderWidth: "1px" }} />
-                            </div>
-                            <div className="col-3">
-                                <label className='m-1'>State :</label>
-                                <Select
-                                    defaultValue={selectedOption}
-                                    onChange={setSelectedOption}
-                                    options={options}
-                                    styles={{
-                                        control: (baseStyles, state) => ({
-                                            ...baseStyles,
-                                            borderColor: 'black',
-                                        }),
-                                    }}
-                                />
-                            </div>
-                            <div className="col">
-                                <div className='mt-2'></div>
-                                {<button className="btn btn-sm btn-primary mx-1 mt-4" onClick={handleClick} type='submit' style={{ height: "36px" }}>Search</button>}
-                            </div>
-                        </div>
-                    </form> */}
+                    {/* <div className="container">
+                        <Header />
+                    </div> */}
                     <form>
                         <div className="container">
                             <header className="d-flex justify-content-center py-3">
                                 <ul className="nav nav-pills">
-                                    <li className="nav-item mx-2 mt-1">Query :</li>
+                                    <li className="nav-item mx-2 mt-1">Name :</li>
                                     <li className="nav-item">
                                         <div >
-                                            <input name="searchquery" id="searchquery" onChange={onChange} style={{ height: "36px", borderColor: "black", borderRadius: "4px", borderStyle: "solid", borderWidth: "1px" }} />
+                                            <input name="searchquery" id="searchquery" onChange={handleQuery} style={{ height: "36px", borderColor: "black", borderRadius: "4px", borderStyle: "solid", borderWidth: "1px" }} />
                                         </div></li>
                                     <li className="nav-item">
                                         <div>
-                                            {/* <div ></div> */}
-                                            {<button className="btn btn-sm btn-primary mx-2 " onClick={handleClick} type='submit' style={{ height: "36px" }}>Search</button>}
+                                            {<button className="btn btn-md mx-2 " onClick={handleClick} type='submit' style={{ background: "#154063", color: "white" }}>Search</button>}
+                                        </div>
+                                    </li>
+                                    <li className="nav-item">
+                                        <div>
+                                            {<button className="btn btn-md mx-2 " onClick={handleReset} type='reset' style={{ background: "#154063", color: "white" }}>Clear</button>}
                                         </div>
                                     </li>
                                 </ul>
@@ -161,7 +90,7 @@ function NameKn() {
                     <div className="row" >
                         <div className="col"></div>
                         <div className="col-8 mt-1" >
-                            {!isEmpty ? (<ResultTable data={data} columns={columns}/>) : (<p>"Please Enter a Query and State"</p>)}
+                            {!isEmpty ? (<ResultTable data={data} columns={columns} />) : (<p>"Please Enter a Query and State"</p>)}
                         </div>
                         <div className="col"></div>
                     </div>

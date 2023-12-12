@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import ResultTable from './ResultTable';
+import Header from './Header';
 
-function Namescape() {
+function Address() {
     // var data;
     let isEmpty = false;
     let [data, setData] = useState('')
@@ -41,6 +42,10 @@ function Namescape() {
 
     }
 
+    const handleReset = (e) => {
+        setSearchQuery('');
+    }
+
     const columns = [
         {
             name: 'Address',
@@ -56,19 +61,14 @@ function Namescape() {
         <>
             <div>
                 <div className="container-md">
-                    <div className="container">
-                        <header className="d-flex justify-content-center py-3" style={{ backgroundColor: "#154063" }}>
-                            <ul className="nav nav-pills">
-                                <li className="nav-item"><img src='https://gisttransserver.in/assets/img/logo.svg' alt='cdac-logo' style={{ height: "100px", width: "100px" }}></img></li>
-                                <li className="nav-item"><h1 className='mx-2 mt-3' style={{ color: "white" }}>CDAC Name & Address Search</h1></li>
-                            </ul>
-                        </header>
-                    </div>
+                    {/* <div className="container">
+                        <Header />
+                    </div> */}
                     <form>
                         <div className="container">
                             <header className="d-flex justify-content-center py-3">
                                 <ul className="nav nav-pills">
-                                    <li className="nav-item mx-2 mt-1">Query :</li>
+                                    <li className="nav-item mx-2 mt-1">Address :</li>
                                     <li className="nav-item">
                                         <div >
                                             <input name="searchquery" id="searchquery" onChange={onChange} style={{ height: "36px", borderColor: "black", borderRadius: "4px", borderStyle: "solid", borderWidth: "1px" }} />
@@ -76,6 +76,11 @@ function Namescape() {
                                     <li className="nav-item">
                                         <div>
                                             {<button className="btn btn-md mx-2 " onClick={handleClick} type='submit' style={{ background: "#154063", color: "white" }}>Search</button>}
+                                        </div>
+                                    </li>
+                                    <li className="nav-item">
+                                        <div>
+                                            {<button className="btn btn-md mx-2 " onClick={handleReset} type='reset' style={{ background: "#154063", color: "white" }}>Clear</button>}
                                         </div>
                                     </li>
                                 </ul>
@@ -96,4 +101,4 @@ function Namescape() {
     )
 }
 
-export default Namescape
+export default Address

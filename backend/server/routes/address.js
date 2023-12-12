@@ -100,7 +100,7 @@ router.post('/searchaddress',
                                 {
                                     multi_match: {
                                         query: `"\" ${queryA} \ "`,
-                                        fields: ["address", "vernacular_address"],
+                                        fields: ["address", "vernacular_address", "address_cdac","vernacular_address_cdac"],
                                         type: 'phrase'
                                     }
                                 }
