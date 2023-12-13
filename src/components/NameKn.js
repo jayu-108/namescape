@@ -83,7 +83,7 @@ function NameKn() {
                                     <li className="nav-item mx-2 mt-1">Name :</li>
                                     <li className="nav-item">
                                         <div >
-                                            <input name="searchquery" id="searchquery" ref={ref} onChange={handleQuery} style={{ height: "36px", borderColor: "black", borderRadius: "4px", borderStyle: "solid", borderWidth: "1px" }} />
+                                            <input type='text' name="searchquery" id="searchquery" ref={ref} onChange={handleQuery} style={{ height: "36px", borderColor: "black", borderRadius: "4px", borderStyle: "solid", borderWidth: "1px" }} />
                                         </div></li>
                                     <li className="nav-item">
                                         <div>

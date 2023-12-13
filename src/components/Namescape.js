@@ -41,14 +41,12 @@ function Namescape() {
             console.log("Server Down");
             // res.status(500).send("Internal Server Error")
         }
-
     }
 
     const handleReset = (e) => {
         setSearchQuery('');
         setSelectedOption('');
     }
-
     const columns = [
         {
             name: 'Name',
@@ -86,7 +84,7 @@ function Namescape() {
                                     <li className="nav-item mx-2 mt-1">Name :</li>
                                     <li className="nav-item">
                                         <div >
-                                            <input name="searchquery" id="searchquery" ref={ref} onChange={onChange} style={{ height: "36px", borderColor: "black", borderRadius: "4px", borderStyle: "solid", borderWidth: "1px" }} />
+                                            <input type='text'name="searchquery" id="searchquery" ref={ref} onChange={onChange} style={{ height: "36px", borderColor: "black", borderRadius: "4px", borderStyle: "solid", borderWidth: "1px" }} />
                                         </div></li>
                                     <li className="nav-item mx-2 mt-1"> State : </li>
                                     <li className="nav-item mx-2"><Dropdown selectedOption={selectedOption} onChange={setSelectedOption} /></li>
@@ -129,7 +127,7 @@ function Namescape() {
                     </form> */}
                     <div className="row" >
                         <div className="col"></div>
-                        <div className="col-10 mt-1" >
+                        <div className="col-8 mt-1" >
                             {!isEmpty ? (<ResultTable data={data} columns={columns} />) : (<p>"Please Enter a Query and State"</p>)}
                         </div>
                         <div className="col"></div>
