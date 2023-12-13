@@ -10,6 +10,7 @@ app.use(express.json())
 console.log(index_name);
 console.log(index_address);
 
+app.use('/allstatesearch',require('./routes/allstatename'));
 app.use('/name', require('./routes/name'));
 app.use('/address', require('./routes/address'));
 

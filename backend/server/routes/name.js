@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const client = require('../elasticsearch/client')
+const {client} = require('../elasticsearch/client')
 const { index_name } = require('../../config');
 const { body, validationResult } = require('express-validator');
 
