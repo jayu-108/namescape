@@ -1,16 +1,17 @@
 import React, { useRef, useState } from 'react'
 import ResultTable from './ResultTable';
-import Dropdown from './Dropdown';
-
+// import Dropdown from './Dropdown';
 function Namescape() {
     // var data;
     let isEmpty = false;
     let [data, setData] = useState('')
     const [searchquery, setSearchQuery] = useState('');
-    const [selectedOption, setSelectedOption] = useState('');
+    // const [selectedOption, setSelectedOption] = useState('');
     const [keyboardLang, setKeyboardLang] = useState('hindi');
     const [queryState, setQueryState] = useState('');
     const ref = useRef(null);
+
+    const namescape_api = process.env.REACT_APP_ALL_STATE_NAME_API;
 
     const onChange = (e) => {
         setSearchQuery(e.target.value)
@@ -40,7 +41,7 @@ function Namescape() {
         if (queryState === '')
             window.alert("plese select state")
         try {
-            const response = await fetch('http://10.208.10.70:5000/allstatesearch/namescape', {
+            const response = await fetch(namescape_api, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -128,7 +129,7 @@ function Namescape() {
                                     </li>
                                     <li className="nav-item">
                                         <div>
-                                            {<button className="btn btn-md  mx-2 " onClick={handleReset} type='reset' style={{ background: "#154063", color: "white" }}>Clear</button>}
+                                            {<button className="btn btn-md  mx-2 " onClick={handleReset} type='reset' style={buttonStyle}>Clear</button>}
                                         </div>
                                     </li>
                                     {/* <li className="nav-item">
@@ -138,7 +139,7 @@ function Namescape() {
                                         </svg></button>
                                     </li> */}
                                     <li className="nav-item">
-                                        <img type='button' src='https://gisttransserver.in/sebi/assets/img/keyboard.png' onClick={handleKeyboard} height={38} className='mx-2'/>
+                                        <img type='button' src='https://gisttransserver.in/sebi/assets/img/keyboard.png' onClick={handleKeyboard} height={38} className='mx-2' alt='keyboard'/>
                                     </li>
                                 </ul>
                             </header>

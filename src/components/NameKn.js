@@ -7,7 +7,7 @@ function NameKn() {
     let [data, setData] = useState('')
     const [searchquery, setSearchQuery] = useState('');
     const ref = useRef(null);
-
+    const name_kn_api = process.env.REACT_APP_NAME_KN_API;
     const handleQuery = (e) => {
         setSearchQuery(e.target.value)
     }
@@ -15,7 +15,7 @@ function NameKn() {
     const handleClick = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://10.208.10.70:5000/name/search', {
+            const response = await fetch(name_kn_api, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -53,7 +53,7 @@ function NameKn() {
         }
         ,
         {
-            name: 'vernacular_name',
+            name: 'Vernacular Name',
             selector: row => row.vernacular_name,
         }
     ]
@@ -102,7 +102,7 @@ function NameKn() {
                                         </svg></button>
                                     </li> */}
                                     <li className="nav-item">
-                                        <img type='button' src='https://gisttransserver.in/sebi/assets/img/keyboard.png' onClick={handleKeyboard} height={38} className='mx-2'/>
+                                        <img type='button' src='https://gisttransserver.in/sebi/assets/img/keyboard.png' onClick={handleKeyboard} height={38} className='mx-2' alt='keyboard'/>
                                     </li>
                                 </ul>
                             </header>

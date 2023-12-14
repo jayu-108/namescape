@@ -7,6 +7,7 @@ function Address() {
     let [data, setData] = useState('')
     const [searchquery, setSearchQuery] = useState('');
     const ref = useRef(null);
+    const address_kn_api = process.env.REACT_APP_ADDRESS_KN_API;
 
     const onChange = (e) => {
         setSearchQuery(e.target.value)
@@ -15,7 +16,7 @@ function Address() {
     const handleClick = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://10.208.10.70:5000/address/searchaddress', {
+            const response = await fetch(address_kn_api, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -101,7 +102,7 @@ function Address() {
                                         </svg></button>
                                     </li> */}
                                     <li className="nav-item">
-                                        <img type='button' src='https://gisttransserver.in/sebi/assets/img/keyboard.png' onClick={handleKeyboard} height={38} className='mx-2'/>
+                                        <img type='button' src='https://gisttransserver.in/sebi/assets/img/keyboard.png' onClick={handleKeyboard} height={38} className='mx-2' alt='keyboard'/>
                                     </li>
                                 </ul>
                             </header>
