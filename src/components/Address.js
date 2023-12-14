@@ -82,16 +82,16 @@ function Address() {
                                     <li className="nav-item mx-2 mt-1">Address :</li>
                                     <li className="nav-item">
                                         <div >
-                                            <input type='text' name="searchquery" id="searchquery" ref={ref}onChange={onChange} style={{ height: "36px", borderColor: "black", borderRadius: "4px", borderStyle: "solid", borderWidth: "1px" }} />
+                                            <input type='text' className='mx-2'name="searchquery" id="searchquery" ref={ref}onChange={onChange} style={{ height: "36px", borderColor: "black", borderRadius: "4px", borderStyle: "solid", borderWidth: "1px" }} />
                                         </div></li>
                                     <li className="nav-item">
                                         <div>
-                                            {<button className="btn btn-md mx-2 " onClick={handleClick} type='submit' style={{ background: "#154063", color: "white" }}>Search</button>}
+                                            {<button className="btn btn-md mx-2 " onClick={handleClick} type='submit' style={buttonStyle}>Search</button>}
                                         </div>
                                     </li>
                                     <li className="nav-item">
                                         <div>
-                                            {<button className="btn btn-md mx-2 " onClick={handleReset} type='reset' style={{ background: "#154063", color: "white" }}>Clear</button>}
+                                            {<button className="btn btn-md mx-2 " onClick={handleReset} type='reset' style={buttonStyle}>Clear</button>}
                                         </div>
                                     </li>
                                     {/* <li className="nav-item">
@@ -101,7 +101,7 @@ function Address() {
                                         </svg></button>
                                     </li> */}
                                     <li className="nav-item">
-                                        <img src='https://gisttransserver.in/sebi/assets/img/keyboard.png' onClick={handleKeyboard} height={38} className='mx-2'/>
+                                        <img type='button' src='https://gisttransserver.in/sebi/assets/img/keyboard.png' onClick={handleKeyboard} height={38} className='mx-2'/>
                                     </li>
                                 </ul>
                             </header>
@@ -109,7 +109,7 @@ function Address() {
                     </form>
                     <div className="row" >
                         <div className="col"></div>
-                        <div className="col-10 mt-1" >
+                        <div className="col-12 px-4 mt-1" >
                             {!isEmpty ? (<ResultTable data={data} columns={columns} />) : (<p>"Please Enter a Query and State"</p>)}
                         </div>
                         <div className="col"></div>

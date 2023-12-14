@@ -8,14 +8,15 @@ import Cdac from './components/Cdac';
 function App() {
   return (
     <>
-      <Router>
+      {/* <Router>
         <Routes>
           <Route exact path='/' element={<Namescape />} />
           <Route exact path='/address' element={<Address />} />
           <Route exact path='/name' element={<NameKn />} />
           <Route exact path='/search' element={<Cdac />} />
         </Routes>
-      </Router>
+      </Router> */}
+      <Cdac />
     </>
   );
 }

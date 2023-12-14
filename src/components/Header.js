@@ -3,7 +3,7 @@ import React from 'react'
 export default function Header() {
     return (
         <div>
-            <div className="container">
+            <div>
                 <header className="d-flex justify-content-center py-3" style={{ backgroundColor: "#154063" }}>
                     <ul className="nav nav-pills">
                         <li className="nav-item"><img src='https://gisttransserver.in/assets/img/logo.svg' alt='cdac-logo' style={{ height: "100px", width: "100px" }}></img></li>

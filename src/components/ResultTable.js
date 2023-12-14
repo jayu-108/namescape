@@ -11,7 +11,7 @@ function ResultTable({data, columns}) {
         headRow: {
             style: {
                 backgroundColor: 'lightblue',
-
+                fontSize: '15px'
             },
         },
         headCells: {

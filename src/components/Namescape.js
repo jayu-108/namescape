@@ -138,7 +138,7 @@ function Namescape() {
                                         </svg></button>
                                     </li> */}
                                     <li className="nav-item">
-                                        <img src='https://gisttransserver.in/sebi/assets/img/keyboard.png' onClick={handleKeyboard} height={38} className='mx-2'/>
+                                        <img type='button' src='https://gisttransserver.in/sebi/assets/img/keyboard.png' onClick={handleKeyboard} height={38} className='mx-2'/>
                                     </li>
                                 </ul>
                             </header>

@@ -1,0 +1,9 @@
+.btEnabledStyle{
+    border-color: #154063;
+    color: #154063
+}
+
+.btDisabledStyle{
+    background: #154063;
+    color: white;
+}
