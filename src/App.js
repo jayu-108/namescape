@@ -1,8 +1,8 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
-import Namescape from './components/Namescape';
-import Address from './components/Address'
-import NameKn from './components/NameKn';
+// import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
+// import Namescape from './components/Namescape';
+// import Address from './components/Address'
+// import NameKn from './components/NameKn';
 import Cdac from './components/Cdac';
 
 function App() {
