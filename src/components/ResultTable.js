@@ -31,10 +31,10 @@ function ResultTable({data, columns}) {
     }
 
     return (
-        <>
+        <div>
             <DataTable columns={columns} data={data} customStyles={customStyles} pagination showGridlines
             />
-        </>
+        </div>
     )
 }
 

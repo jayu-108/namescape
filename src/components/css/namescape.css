@@ -1,0 +1,32 @@
+.btEnabledStyle{
+    border-color: #154063;
+    color: #154063
+}
+
+.btDisabledStyle{
+    background: #154063;
+    color: white;
+}
+
+.queryInput{ 
+    height: 36px;
+    border-color: black;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px 
+}
+
+.buttonStyle{
+    background: #154063;
+    color: white
+}
+
+.cdacFooter{
+    background: #154063;
+    color: white; 
+    bottom: 0; 
+    width: 100%;
+    position: sticky;
+    margin-top: auto
+}
+
