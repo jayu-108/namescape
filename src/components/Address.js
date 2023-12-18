@@ -58,7 +58,7 @@ function Address() {
         }
     ]
 
-    const handleKeyboard = (e) =>{
+    const handleKeyboard = (e) => {
         e.preventDefault();
         window.openKeyboard('kannada');
         ref.current.focus();
@@ -78,7 +78,7 @@ function Address() {
                                     <li className="nav-item mx-2 mt-1">Address :</li>
                                     <li className="nav-item">
                                         <div >
-                                            <input type='text' className='mx-2 queryInput 'name="searchquery" id="searchquery" ref={ref}onChange={onChange}  />
+                                            <input type='text' className='mx-2 queryInput ' name="searchquery" id="searchquery" ref={ref} onChange={onChange} />
                                         </div></li>
                                     <li className="nav-item">
                                         <div>
@@ -90,8 +90,11 @@ function Address() {
                                             {<button className="btn btn-md mx-2 buttonStyle" onClick={handleReset} type='reset'>Clear</button>}
                                         </div>
                                     </li>
-                                    <li className="nav-item">
+                                    {/* <li className="nav-item">
                                         <img type='button' src='https://gisttransserver.in/sebi/assets/img/keyboard.png' onClick={handleKeyboard} height={38} className='mx-2' alt='keyboard'/>
+                                    </li> */}
+                                    <li className='mx-2' style={{ marginTop: '-4px', color: '#154063' }}>
+                                        <i className="far fa-keyboard fa-3x" type='button' onClick={handleKeyboard} alt='keyboard'></i>
                                     </li>
                                 </ul>
                             </div>
