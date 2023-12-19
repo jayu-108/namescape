@@ -98,7 +98,7 @@ function Namescape() {
                                         <select className="form-select form-select-md" aria-label="Default select example" onChange={handleSelect}
                                             style={{ borderColor: 'black', borderRadius: '4px' }}>
                                             <option data-state='hindi' value={'hindi'}>Hindi</option>
-                                            <option data-state='maharashtra' value={'marathi'}>Maharashtra</option>
+                                            <option data-state='maharashtra' value={'marathi'} selected>Maharashtra</option>
                                             <option data-state='karanataka' value={'kannada'}>Karanataka</option>
                                             <option data-state='telengana' value={'telugu'}>Telangana</option>
                                             <option data-state='tamilnadu' value={'tamil'}>Tamilnadu</option>
