@@ -6,7 +6,7 @@ function Namescape() {
     let [data, setData] = useState('')
     const [searchquery, setSearchQuery] = useState('');
     const [keyboardLang, setKeyboardLang] = useState('hindi');
-    const [queryState, setQueryState] = useState('');
+    const [queryState, setQueryState] = useState('maharashtra');
     const ref = useRef(null);
 
     const namescape_api = process.env.REACT_APP_ALL_STATE_NAME_API;
