@@ -99,7 +99,7 @@ router.post('/searchaddress',
                             must: [
                                 {
                                     multi_match: {
-                                        query: `"\" ${queryA} \ "`,
+                                        query: `"\" ${enQuery} \ "`,
                                         fields: ["address", "vernacular_address", "address_cdac","vernacular_address_cdac"],
                                         type: 'phrase'
                                     }
@@ -108,17 +108,17 @@ router.post('/searchaddress',
                             should: [
                                 {
                                     match: {
-                                        "address": `"\" ${queryA} \ "`
+                                        "address": `"\" ${enQuery} \ "`
                                     }
                                 },
                                 {
                                     match: {
-                                        "address_cdac": `"\" ${queryA} \ "`
+                                        "address_cdac": `"\" ${enQuery} \ "`
                                     }
                                 },
                                 {
                                     match: {
-                                        "vernacular_address": `"\" ${queryA} \ "`
+                                        "vernacular_address": `"\" ${enQuery} \ "`
                                     }
                                 },
                                 {

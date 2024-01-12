@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {client2} = require('../elasticsearch/client')
+const {client2, client} = require('../elasticsearch/client')
 const { index_all_state } = require('../../config');
 const { body, validationResult } = require('express-validator');
 
@@ -19,7 +19,7 @@ router.post('/namescape',
         const { query, state } = req.body;
 
         try {
-            const result = await client2.search({
+            const result = await client.search({
                 index: index_all_state,
                 body: {
                     from: 0,

@@ -12,8 +12,8 @@ const client2 = new Client({
 })
 
 client.ping()
-  .then(response => console.log("You are connected to Elasticsearch!"))
-  .catch(error => console.error("Elasticsearch is not connected."))
+  .then(response => console.log("You are connected to Elasticsearch!"+response))
+  .catch(error => console.error("Elasticsearch is not connected."+error))
 
 module.exports = {client, client2};  
 

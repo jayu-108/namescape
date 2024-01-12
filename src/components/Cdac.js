@@ -28,14 +28,17 @@ export default function Cdac() {
                     <div className='d-flex justify-content-center py-3'>
                         <ul className='nav nav-pills'>
                             <li className='nav-item'>
-                                <button className={active === 'namescape' ? btEnabledStyle : btDisabledStyle} onClick={(event) => handleClick(event, 'namescape')} id='namescape' value='namescape'>Namescape</button>
-                                <button className={active === 'address' ? btEnabledStyle : btDisabledStyle} onClick={(event) => handleClick(event, 'address')} id='address' value='address'>Address</button>
+                                {/* <button className={active === 'namescape' ? btEnabledStyle : btDisabledStyle} onClick={(event) => handleClick(event, 'namescape')} id='namescape' value='namescape'>Namescape</button> */}
                                 <button className={active === 'name' ? btEnabledStyle : btDisabledStyle} onClick={(event) => handleClick(event, 'name')} id='name' value='name'>Name</button>
+                                <button className={active === 'address' ? btEnabledStyle : btDisabledStyle} onClick={(event) => handleClick(event, 'address')} id='address' value='address'>Address</button>
+                                
                             </li>
                         </ul>
                     </div>
                     <div style={{ paddingBottom: '5px', overflowY: 'auto', height: 'calc(100% - 160px)' }}>
-                        {searchType === 'name' ? <NameKn /> : searchType === 'address' ? <Address /> : <Namescape />}
+                        {/* {searchType === 'name' ? <NameKn /> : searchType === 'address' ? <Address /> :
+                            <Namescape />} */}
+                        {searchType === 'address' ? <Address /> : <Namescape />}
                     </div>
                 </div>
                 <div id='footer' className='container'>
